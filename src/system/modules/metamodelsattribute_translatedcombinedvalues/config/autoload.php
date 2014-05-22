@@ -22,10 +22,6 @@
 ClassLoader::addClasses(array
 (
 	'MetaModels\Attribute\TranslatedCombinedValues\TranslatedCombinedValues' => 'system/modules/metamodelsattribute_translatedcombinedvalues/MetaModels/Attribute/TranslatedCombinedValues/TranslatedCombinedValues.php',
-	'MetaModels\Dca\AttributeTranslatedCombinedValues'                       => 'system/modules/metamodelsattribute_translatedcombinedvalues/MetaModels/Dca/AttributeTranslatedCombinedValues.php',
-
-	'MetaModelAttributeCombinedValues'        => 'system/modules/metamodelsattribute_translatedcombinedvalues/deprecated/MetaModelAttributeCombinedValues.php',
-	'TableMetaModelsAttributeCombinedValues'  => 'system/modules/metamodelsattribute_translatedcombinedvalues/deprecated/TableMetaModelsAttributeCombinedValues.php',
 ));
 
 

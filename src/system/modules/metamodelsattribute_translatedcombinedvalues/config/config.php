@@ -19,9 +19,5 @@
 $GLOBALS['METAMODELS']['attributes']['translatedcombinedvalues']['class'] = 'MetaModels\Attribute\TranslatedCombinedValues\TranslatedCombinedValues';
 $GLOBALS['METAMODELS']['attributes']['translatedcombinedvalues']['image'] = 'system/modules/metamodelsattribute_translatedcombinedvalues/html/combinedvalues.png';
 
-// non composerized Contao 2.X autoload support.
-$GLOBALS['MM_AUTOLOAD'][] = dirname(__DIR__);
-$GLOBALS['MM_AUTOLOAD'][] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'deprecated';
-
 // Meta Informations
 $GLOBALS['METAMODELS']['metainformation']['allowedTitle'][]       = 'translatedcombinedvalues';
