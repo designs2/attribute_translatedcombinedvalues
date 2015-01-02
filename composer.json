@@ -39,24 +39,29 @@
 	},
 	"require":{
 		"php":">=5.3",
-		"contao/core": ">=2.11,<4.0",
-		"contao-community-alliance/composer-plugin": "*",
-		"metamodels/core":"~2.0.0"
+        "contao/core": ">=3.2,<3.5",
+        "contao-community-alliance/composer-plugin": "~2.0",
+        "metamodels/core": "~2.0"
 	},
 	"require-dev": {
-		"metamodels/php-coding-standard":"1.0.*@dev",
-		"cyberspectrum/contao-toolbox": "1.0.*@dev"
+        "cyberspectrum/contao-toolbox": "dev-master",
+        "contao-community-alliance/build-system": "~1.0",
+        "contao-community-alliance/build-system-all-tasks": "~1.0",
+        "contao-community-alliance/coding-standard": "~1.0",
+        "metamodels/base-unit-tests": "~1.0"
 	},
 	"conflict": {
-		"contao/core": "3.0.*"
+		"contao/core": "3.4.0"
 	},
 	"autoload": {
-		"classmap": ["src"]
+		"psr-0": {
+            "MetaModels": "src/"
+        }
 	},
 	"extra":{
 		"contao": {
 			"symlinks":{
-				"src/system/modules/metamodelsattribute_translatedcombinedvalues":"system/modules/metamodelsattribute_translatedcombinedvalues"
+				"contao": "system/modules/metamodelattribute_translatedcombinedvalues"
 			},
 			"transifex": {
 				"project": "metamodels",
@@ -65,8 +70,10 @@
 				"languages_tx": ".tx"
 			}
 		},
-		"branch-alias": {
-			"dev-tng": "2.0.x-dev"
-		}
-	}
+        "branch-alias": {
+            "dev-tng": "2.0.x-dev"
+        }
+	},
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
