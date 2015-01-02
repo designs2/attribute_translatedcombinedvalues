@@ -8,7 +8,8 @@
  * PHP version 5
  * @package    MetaModels
  * @subpackage Core
- * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
+ * @author      Stefan Heimes <stefan_heimes@hotmail.com>
+ * @author      David Greminger <david.greminger@1up.io>
  * @copyright  The MetaModels team.
  * @license    LGPL.
  * @filesource
