@@ -23,4 +23,4 @@ $GLOBALS['METAMODELS']['attributes']['translatedcombinedvalues']['image'] = 'sys
 $GLOBALS['METAMODELS']['metainformation']['allowedTitle'][]       = 'translatedcombinedvalues';
 
 $GLOBALS['TL_EVENTS'][\ContaoCommunityAlliance\Contao\EventDispatcher\Event\CreateEventDispatcherEvent::NAME][] =
-	'MetaModels\DcGeneral\Events\Table\Attribute\Translated\CombinedValues\PropertyAttribute::registerEvents';
+    'MetaModels\DcGeneral\Events\Table\Attribute\Translated\CombinedValues\PropertyAttribute::registerEvents';

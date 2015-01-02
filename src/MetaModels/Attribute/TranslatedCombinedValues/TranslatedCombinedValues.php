@@ -16,11 +16,9 @@
  * @filesource
  */
 
-
 namespace MetaModels\Attribute\TranslatedCombinedValues;
 
 use MetaModels\Attribute\TranslatedReference;
-use MetaModels\Helper\ContaoController;
 
 /**
  * This is the MetaModelAttribute class for handling combined values.
@@ -32,114 +30,105 @@ use MetaModels\Helper\ContaoController;
  */
 class TranslatedCombinedValues extends TranslatedReference
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function getValueTable()
-	{
-		return 'tl_metamodel_translatedtext';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    protected function getValueTable()
+    {
+        return 'tl_metamodel_translatedtext';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getAttributeSettingNames()
-	{
-		return array_merge(parent::getAttributeSettingNames(), array(
-			'combinedvalues_fields',
-			'combinedvalues_format',
-			'force_combinedvalues',
-			'isunique',
-			'mandatory',
-			'filterable',
-			'searchable',
-			'sortable'
-		));
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getAttributeSettingNames()
+    {
+        return array_merge(parent::getAttributeSettingNames(), array(
+            'combinedvalues_fields',
+            'combinedvalues_format',
+            'force_combinedvalues',
+            'isunique',
+            'mandatory',
+            'filterable',
+            'searchable',
+            'sortable',
+        ));
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getFieldDefinition($arrOverrides = array())
-	{
-		$arrFieldDef = parent::getFieldDefinition($arrOverrides);
+    /**
+     * {@inheritdoc}
+     */
+    public function getFieldDefinition($arrOverrides = array())
+    {
+        $arrFieldDef = parent::getFieldDefinition($arrOverrides);
 
-		$arrFieldDef['inputType'] = 'text';
+        $arrFieldDef['inputType'] = 'text';
 
-		// we do not need to set mandatory, as we will automatically update our value when isunique is given.
-		if ($this->get('isunique'))
-		{
-			$arrFieldDef['eval']['mandatory'] = false;
-		}
-		return $arrFieldDef;
-	}
+        // we do not need to set mandatory, as we will automatically update our value when isunique is given.
+        if ($this->get('isunique')) {
+            $arrFieldDef['eval']['mandatory'] = false;
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function modelSaved($objItem)
-	{
-		// combined values already defined and no update forced, get out!
-		if ($objItem->get($this->getColName()) && (!$this->get('force_combinedvalues')))
-		{
-			return;
-		}
+        return $arrFieldDef;
+    }
 
-		$arrCombinedValues = array();
-		foreach (deserialize($this->get('combinedvalues_fields')) as $strAttribute)
-		{
-			if ($this->isMetaField($strAttribute['field_attribute']))
-			{
-				$strField            = $strAttribute['field_attribute'];
-				$arrCombinedValues[] = $objItem->get($strField);
-			}
-			else
-			{
-				$arrValues           = $objItem->parseAttribute($strAttribute['field_attribute'], 'text', null);
-				$arrCombinedValues[] = $arrValues['text'];
-			}
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function modelSaved($objItem)
+    {
+        // combined values already defined and no update forced, get out!
+        if ($objItem->get($this->getColName()) && (!$this->get('force_combinedvalues'))) {
+            return;
+        }
 
-		$strCombinedValues = vsprintf($this->get('combinedvalues_format'), $arrCombinedValues);
-		$strCombinedValues = trim($strCombinedValues);
+        $arrCombinedValues = array();
+        foreach (deserialize($this->get('combinedvalues_fields')) as $strAttribute) {
+            if ($this->isMetaField($strAttribute['field_attribute'])) {
+                $strField            = $strAttribute['field_attribute'];
+                $arrCombinedValues[] = $objItem->get($strField);
+            } else {
+                $arrValues           = $objItem->parseAttribute($strAttribute['field_attribute'], 'text', null);
+                $arrCombinedValues[] = $arrValues['text'];
+            }
+        }
 
-		// we need to fetch the attribute values for all attribs in the combinedvalues_fields and update the database and the model accordingly.
-		if ($this->get('isunique'))
-		{
-			// ensure uniqueness.
-			$strLanguage           = $this->getMetaModel()->getActiveLanguage();
-			$strBaseCombinedValues = $strCombinedValues;
-			$arrIds                = array($objItem->get('id'));
-			$intCount              = 2;
-			while(array_diff($this->searchForInLanguages($strCombinedValues, array($strLanguage)), $arrIds))
-			{
-				$strCombinedValues = $strBaseCombinedValues . ' (' . $intCount++ . ')';
-			}
-		}
+        $strCombinedValues = vsprintf($this->get('combinedvalues_format'), $arrCombinedValues);
+        $strCombinedValues = trim($strCombinedValues);
 
-		$arrData = $this->widgetToValue($strCombinedValues, $objItem->get('id'));
+        // we need to fetch the attribute values for all attribs in the combinedvalues_fields and update the database and the model accordingly.
+        if ($this->get('isunique')) {
+            // ensure uniqueness.
+            $strLanguage           = $this->getMetaModel()->getActiveLanguage();
+            $strBaseCombinedValues = $strCombinedValues;
+            $arrIds                = array($objItem->get('id'));
+            $intCount              = 2;
+            while (array_diff($this->searchForInLanguages($strCombinedValues, array($strLanguage)), $arrIds)) {
+                $strCombinedValues = $strBaseCombinedValues.' ('.$intCount++.')';
+            }
+        }
 
-		$this->setTranslatedDataFor(array($objItem->get('id') => $arrData), $this->getMetaModel()->getActiveLanguage());
-		$objItem->set($this->getColName(), $arrData);
-	}
+        $arrData = $this->widgetToValue($strCombinedValues, $objItem->get('id'));
 
-	/**
-	 * Check if we have a metafield from metatmodels.
-	 *
-	 * @param string $strField The selected value.
-	 *
-	 * @return boolean True => Yes we have | False => nope.
-	 */
-	protected function isMetaField($strField)
-	{
-		$strField = trim($strField);
+        $this->setTranslatedDataFor(array($objItem->get('id') => $arrData), $this->getMetaModel()->getActiveLanguage());
+        $objItem->set($this->getColName(), $arrData);
+    }
 
-		if (in_array($strField, $GLOBALS['METAMODELS_SYSTEM_COLUMNS']))
-		{
-			return true;
-		}
+    /**
+     * Check if we have a metafield from metatmodels.
+     *
+     * @param string $strField The selected value.
+     *
+     * @return boolean True => Yes we have | False => nope.
+     */
+    protected function isMetaField($strField)
+    {
+        $strField = trim($strField);
 
-		return false;
-	}
+        if (in_array($strField, $GLOBALS['METAMODELS_SYSTEM_COLUMNS'])) {
+            return true;
+        }
 
+        return false;
+    }
 }
