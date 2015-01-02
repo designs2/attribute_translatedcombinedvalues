@@ -26,8 +26,7 @@ use MetaModels\Factory;
 /**
  * Handle events for tl_metamodel_attribute.combinedvalues_fields.field_attribute.
  */
-class PropertyAttribute
-    extends BaseSubscriber
+class PropertyAttribute extends BaseSubscriber
 {
     /**
      * Register all listeners to handle creation of a data container.
@@ -89,7 +88,7 @@ class PropertyAttribute
 
         $result = array();
         // Add meta fields.
-        $result['meta'] = $GLOBALS['METAMODELS_SYSTEM_COLUMNS'];
+        $result['meta'] = self::getMetaModelsSystemColumns();
 
         // Fetch all attributes except for the current attribute.
         foreach ($metaModel->getAttributes() as $attribute) {
@@ -114,5 +113,18 @@ class PropertyAttribute
         }
 
         $event->setOptions($result);
+    }
+
+    /**
+     * Returns the METAMODELS_SYSTEM_COLUMNS (replacement for super globals access).
+     *
+     * @return array METAMODELS_SYSTEM_COLUMNS
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.CamelCaseVariableName)
+     */
+    public function getMetaModelsSystemColumns()
+    {
+        return $GLOBALS['METAMODELS_SYSTEM_COLUMNS'];
     }
 }

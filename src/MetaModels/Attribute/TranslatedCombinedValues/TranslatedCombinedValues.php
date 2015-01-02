@@ -96,7 +96,8 @@ class TranslatedCombinedValues extends TranslatedReference
         $strCombinedValues = vsprintf($this->get('combinedvalues_format'), $arrCombinedValues);
         $strCombinedValues = trim($strCombinedValues);
 
-        // we need to fetch the attribute values for all attribs in the combinedvalues_fields and update the database and the model accordingly.
+        // we need to fetch the attribute values for all attribs in the combinedvalues_fields and update the database
+        // and the model accordingly.
         if ($this->get('isunique')) {
             // ensure uniqueness.
             $strLanguage           = $this->getMetaModel()->getActiveLanguage();
@@ -104,7 +105,8 @@ class TranslatedCombinedValues extends TranslatedReference
             $arrIds                = array($objItem->get('id'));
             $intCount              = 2;
             while (array_diff($this->searchForInLanguages($strCombinedValues, array($strLanguage)), $arrIds)) {
-                $strCombinedValues = $strBaseCombinedValues.' ('.$intCount++.')';
+                $intCount++;
+                $strCombinedValues = $strBaseCombinedValues .' ('.$intCount.')';
             }
         }
 
@@ -125,10 +127,23 @@ class TranslatedCombinedValues extends TranslatedReference
     {
         $strField = trim($strField);
 
-        if (in_array($strField, $GLOBALS['METAMODELS_SYSTEM_COLUMNS'])) {
+        if (in_array($strField, $this->getMetaModelsSystemColumns())) {
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * Returns the METAMODELS_SYSTEM_COLUMNS (replacement for super globals access).
+     *
+     * @return array METAMODELS_SYSTEM_COLUMNS
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.CamelCaseVariableName)
+     */
+    public function getMetaModelsSystemColumns()
+    {
+        return $GLOBALS['METAMODELS_SYSTEM_COLUMNS'];
     }
 }
