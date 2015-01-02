@@ -15,14 +15,14 @@
  * @filesource
  */
 
-namespace MetaModels\Test\Attribute\GeoProtection;
+namespace MetaModels\Test\Attribute\TranslatedCombinedValues;
 
 use MetaModels\Attribute\TranslatedCombinedValues\TranslatedCombinedValues;
 
 /**
  * Unit tests to test class GeoProtection.
  */
-class GeoProtectionTest extends \PHPUnit_Framework_TestCase
+class TranslatedCombinedValuesTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Mock a MetaModel.
