@@ -17,9 +17,16 @@
 
 use MetaModels\Attribute\TranslatedCombinedValues\AttributeTypeFactory;
 use MetaModels\Attribute\Events\CreateAttributeFactoryEvent;
+use MetaModels\Events\MetaModelsBootEvent;
+use MetaModels\MetaModelsEvents;
 
 return array
 (
+    MetaModelsEvents::SUBSYSTEM_BOOT_BACKEND => array(
+        function (MetaModelsBootEvent $event) {
+            new Subscriber($event->getServiceContainer());
+        }
+    ),
     MetaModelsEvents::ATTRIBUTE_FACTORY_CREATE => array(
         function (CreateAttributeFactoryEvent $event) {
             $factory = $event->getFactory();
