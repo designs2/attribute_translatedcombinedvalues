@@ -8,7 +8,7 @@
  *
  * PHP version 5
  * @package     MetaModels
- * @subpackage  AttributeCombinedValues
+ * @subpackage  TranslatedCombinedValues
  * @author      Stefan Heimes <stefan_heimes@hotmail.com>
  * @author      Andreas Isaak <andy.jared@googlemail.com>
  * @author      David Greminger <david.greminger@1up.io>
@@ -16,9 +16,6 @@
  * @license     LGPL.
  * @filesource
  */
-
-$GLOBALS['METAMODELS']['attributes']['translatedcombinedvalues']['class'] = 'MetaModels\Attribute\TranslatedCombinedValues\TranslatedCombinedValues';
-$GLOBALS['METAMODELS']['attributes']['translatedcombinedvalues']['image'] = 'system/modules/metamodelsattribute_translatedcombinedvalues/html/combinedvalues.png';
 
 // Meta Informations
 $GLOBALS['METAMODELS']['metainformation']['allowedTitle'][]       = 'translatedcombinedvalues';
