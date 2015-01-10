@@ -17,6 +17,7 @@
 
 use MetaModels\Attribute\TranslatedCombinedValues\AttributeTypeFactory;
 use MetaModels\Attribute\Events\CreateAttributeFactoryEvent;
+use MetaModels\DcGeneral\Events\Table\Attribute\TranslatedCombinedValues\Subscriber;
 use MetaModels\Events\MetaModelsBootEvent;
 use MetaModels\MetaModelsEvents;
 
