@@ -18,15 +18,8 @@
  */
 
 /**
- * Register the classes
- */
-ClassLoader::addClasses(array(
-    'MetaModels\Attribute\TranslatedCombinedValues\TranslatedCombinedValues' => 'system/modules/metamodelsattribute_translatedcombinedvalues/MetaModels/Attribute/TranslatedCombinedValues/TranslatedCombinedValues.php',
-));
-
-/**
  * Register the templates
  */
 TemplateLoader::addFiles(array(
-    'mm_attr_translatedcombinedvalues'                  => 'system/modules/metamodelsattribute_translatedcombinedvalues/templates',
+    'mm_attr_translatedcombinedvalues' => 'system/modules/metamodelsattribute_translatedcombinedvalues/templates',
 ));
