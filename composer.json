@@ -61,7 +61,7 @@
 	"extra":{
 		"contao": {
 			"symlinks":{
-				"contao": "system/modules/metamodelattribute_translatedcombinedvalues"
+				"contao": "system/modules/metamodelsattribute_translatedcombinedvalues"
 			},
 			"transifex": {
 				"project": "metamodels",
