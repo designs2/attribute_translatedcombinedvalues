@@ -51,7 +51,6 @@ class TranslatedCombinedValues extends TranslatedReference
             'mandatory',
             'filterable',
             'searchable',
-            'sortable',
         ));
     }
 
