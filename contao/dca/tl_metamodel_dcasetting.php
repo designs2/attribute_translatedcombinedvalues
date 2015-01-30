@@ -7,12 +7,13 @@
  * data in each collection.
  *
  * PHP version 5
- * @package     MetaModels
- * @subpackage  AttributeCombinedValues
- * @author      Andreas Isaak <andy.jared@googlemail.com>
- * @author      David Greminger <david.greminger@1up.io>
- * @copyright   The MetaModels team.
- * @license     LGPL.
+ * @package    MetaModels
+ * @subpackage AttributeTranslatedCombinedValues
+ * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
+ * @author     Andreas Isaak <andy.jared@googlemail.com>
+ * @author     David Greminger <david.greminger@1up.io>
+ * @copyright  The MetaModels team.
+ * @license    LGPL-3+
  * @filesource
  */
 

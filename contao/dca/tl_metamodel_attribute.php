@@ -7,13 +7,14 @@
  * data in each collection.
  *
  * PHP version 5
- * @package     MetaModels
- * @subpackage  AttributeCombinedValues
- * @author      Stefan Heimes <stefan_heimes@hotmail.com>
- * @author      Andreas Isaak <andy.jared@googlemail.com>
- * @author      David Greminger <david.greminger@1up.io>
- * @copyright   The MetaModels team.
- * @license     LGPL.
+ * @package    MetaModels
+ * @subpackage AttributeTranslatedCombinedValues
+ * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
+ * @author     Stefan Heimes <stefan_heimes@hotmail.com>
+ * @author     Andreas Isaak <andy.jared@googlemail.com>
+ * @author     David Greminger <david.greminger@1up.io>
+ * @copyright  The MetaModels team.
+ * @license    LGPL-3+
  * @filesource
  */
 
@@ -21,7 +22,8 @@
  * Table tl_metamodel_attribute
  */
 
-$GLOBALS['TL_DCA']['tl_metamodel_attribute']['metapalettes']['translatedcombinedvalues extends _simpleattribute_'] = array(
+$GLOBALS['TL_DCA']['tl_metamodel_attribute']['metapalettes']['translatedcombinedvalues extends _simpleattribute_'] =
+array(
     '+advanced' => array('force_combinedvalues'),
     '+display'  => array('combinedvalues_format after description', 'combinedvalues_fields'),
 );

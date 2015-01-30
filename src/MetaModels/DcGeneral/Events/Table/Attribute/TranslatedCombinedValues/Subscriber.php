@@ -8,12 +8,12 @@
  *
  * PHP version 5
  * @package    MetaModels
- * @subpackage TranslatedCombinedValues
+ * @subpackage AttributeTranslatedCombinedValues
  * @author     Christian Schiffler <c.schiffler@cyberspectrum.de>
  * @author     Stefan Heimes <stefan_heimes@hotmail.com>
  * @author     David Greminger <david.greminger@1up.io>
  * @copyright  The MetaModels team.
- * @license    LGPL.
+ * @license    LGPL-3+
  * @filesource
  */
 
